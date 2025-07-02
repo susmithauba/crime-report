@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crime Report & Alert System</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #f4f9ff;
+      color: #333;
+    }
+    header {
+      background-color: #1d4ed8;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #2563eb;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .page {
+      display: none;
+      padding: 30px 20px;
+    }
+    .page.active {
+      display: block;
+    }
+    .hero {
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 10px auto 30px;
+    }
+    .hero button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+    }
+    .feature-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 280px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .feature-card img {
+      width: 50px;
+      margin-bottom: 15px;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-container h3 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    footer {
+      background-color: #1e40af;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f4f8;
+    }
+    tr:hover {
+      background-color: #f9fafb;
+    }
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Crime Report & Alert System</h1>
+  <p>Stay Safe. Stay Informed. Report Instantly.</p>
+</header>
+
+<nav>
+  <a onclick="showPage('home')">Home</a>&nbsp;&nbsp;&nbsp;
+  <a onclick="showPage('login')">Login</a>&nbsp;&nbsp;&nbsp;
+  <a onclick="showPage('register')">Register</a>&nbsp;&nbsp;&nbsp;
+  
+  <a href="index.html" style="color: gold; text-decoration: none; font-weight: bold;">Citizen</a>
+
+  
+</nav>
+
+<section id="home" class="page active">
+  <div class="hero">
+    <h2>Empowering Citizens for Safer Communities</h2>
+    <p>Report crimes, suspicious activity, and stay updated on verified public alerts around you. Fast. Anonymous. Trusted.</p>
+    <button onclick="showPage('login')">Get Started</button>
+  </div>
+  <div class="features">
+    <div class="feature-card" onclick="showPage('report')">
+      <img src="https://img.icons8.com/ios-filled/50/task.png" />
+      <h3>Reported Crimes</h3>
+      <p>Quickly submit detailed crime reports with optional images.</p>
+    </div>
+    <div class="feature-card" onclick="showPage('verify')">
+      <img src="https://img.icons8.com/ios-filled/50/search--v1.png" />
+      <h3>Verify Identity</h3>
+      <p>Check if someone is verified or has a criminal record.</p>
+    </div>
+    <div class="feature-card" onclick="showPage('track')">
+      <img src="https://img.icons8.com/ios-filled/50/marker.png" />
+      <h3>Track Report</h3>
+      <p>Use your unique code to check the status of your report.</p>
+    </div>
+    <div class="feature-card" onclick="showPage('alerts')">
+      <img src="https://img.icons8.com/ios-filled/50/megaphone.png" />
+      <h3>Get Alerts</h3>
+      <p>Stay informed with real-time crime alerts near your area.</p>
+    </div>
+  </div>
+</section>
+
+<section id="report" class="page">
+
+  <div style="margin-top: 40px;">
+    <h3 style="text-align: center; margin-bottom: 10px;">Reported Crimes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Crime Label</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Anonymous</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody id="crimeTableBody">
+        <tr>
+          <td>1</td>
+          <td>Theft</td>
+          <td>2025-07-01</td>
+          <td>08:30 PM</td>
+          <td>Main Street, Sector 5</td>
+          <td>Two individuals snatched a phone from a pedestrian.</td>
+          <td>Yes</td>
+          <td><a href="evidence1.jpg" target="_blank">View</a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Suspicious Activity</td>
+          <td>2025-07-02</td>
+          <td>04:15 AM</td>
+          <td>Near Park Avenue</td>
+          <td>Someone was loitering with a weapon near a closed shop.</td>
+          <td>No</td>
+          <td><a href="video_clip.mp4" target="_blank">View</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="verify" class="page">
+  <div class="form-container">
+    <h3>Verify Identity</h3>
+    <input type="text" id="verifyInput" placeholder="Enter Name or ID">
+    <button onclick="verifyIdentity()">Verify</button>
+    <p id="verifyResult"></p>
+  </div>
+</section>
+
+<section id="track" class="page">
+  <div class="form-container">
+    <h3>Track Your Report</h3>
+    <input type="text" id="trackCode" placeholder="Enter Your Report Code" />
+    <button onclick="trackReport()">Track</button>
+    <p id="trackResult" style="margin-top: 10px; color: green;"></p>
+  </div>
+</section>
+
+<section id="alerts" class="page">
+  <div class="form-container">
+    <h3>Local Crime Alerts</h3>
+    <input type="text" id="alertLocation" placeholder="Enter Your Location" />
+    <button onclick="getAlerts()">Get Alerts</button>
+    <div id="alertResults" style="margin-top: 15px;"></div>
+  </div>
+</section>
+
+<section id="login" class="page">
+  <div class="form-container">
+    <h3>Login</h3>
+    <input type="text" placeholder="Username or Email" />
+    <input type="password" placeholder="Password" />
+    <button onclick="alert('Login submitted')">Login</button>
+    <p style="text-align:center; margin-top:10px;">Don’t have an account? <span style="color:#2563eb; cursor:pointer;" onclick="showPage('register')">Register</span></p>
+  </div>
+</section>
+
+<section id="register" class="page">
+  <div class="form-container">
+    <h3>Register</h3>
+    <input type="text" placeholder="Full Name" />
+    <input type="email" placeholder="Email" />
+    <input type="text" placeholder="Username" />
+    <input type="password" placeholder="Password" />
+    <input type="password" placeholder="Confirm Password" />
+    <button onclick="alert('Registration submitted')">Register</button>
+    <p style="text-align:center; margin-top:10px;">Already have an account? <span style="color:#2563eb; cursor:pointer;" onclick="showPage('login')">Login</span></p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Crime Report & Alert System | Powered by Community & Technology
+</footer>
+
+
+<script>
+let reportedCrimes = [];
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function generateCode() {
+  return 'CR' + Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+}
+
+function submitCrimeReport() {
+  const name = document.getElementById('reporterName').value.trim();
+  const type = document.getElementById('crimeType').value.trim();
+  const location = document.getElementById('crimeLocation').value.trim();
+  const desc = document.getElementById('crimeDescription').value.trim();
+  const photo = document.getElementById('crimePhoto').files[0];
+  const status = document.getElementById('reportStatus');
+
+  if (name && type && location && desc) {
+    const code = generateCode();
+    const report = {
+      name,
+      type,
+      location: location.toLowerCase(),
+      description: desc,
+      photoName: photo ? photo.name : 'None',
+      code
+    };
+
+    reportedCrimes.push(report);
+
+    const table = document.getElementById('crimeTableBody');
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${table.rows.length + 1}</td>
+      <td>${report.type}</td>
+      <td>${new Date().toISOString().split('T')[0]}</td>
+      <td>${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+      <td>${report.location}</td>
+      <td>${report.description}</td>
+      <td>${report.name.toLowerCase() === 'anonymous' ? 'Yes' : 'No'}</td>
+      <td>${report.photoName !== 'None' ? `<a href="${report.photoName}" target="_blank">View</a>` : '—'}</td>
+    `;
+    table.appendChild(row);
+
+    status.style.color = 'green';
+    status.innerText = `Crime reported successfully. Your tracking code: ${code}`;
+
+    document.getElementById('reporterName').value = '';
+    document.getElementById('crimeType').value = '';
+    document.getElementById('crimeLocation').value = '';
+    document.getElementById('crimeDescription').value = '';
+    document.getElementById('crimePhoto').value = '';
+  } else {
+    status.style.color = 'red';
+    status.innerText = 'Please fill in all required fields.';
+  }
+}
+
+function verifyIdentity() {
+  const input = document.getElementById("verifyInput").value.trim().toLowerCase();
+  const result = document.getElementById("verifyResult");
+
+  const found = reportedCrimes.find(report =>
+    report.code.toLowerCase() === input
+  );
+
+  result.innerText = found
+    ? `Match found: Crime - ${found.type}, Location - ${found.location}.`
+    : "No record found.";
+}
+
+function trackReport() {
+  const code = document.getElementById("trackCode").value.trim().toUpperCase();
+  const result = document.getElementById("trackResult");
+
+  const found = reportedCrimes.find(report => report.code === code);
+
+  result.innerText = found
+    ? `Status: Reported - ${found.type} at ${found.location}. Description: ${found.description}`
+    : "No report found with this code.";
+}
+
+function getAlerts() {
+  const locationInput = document.getElementById('alertLocation').value.trim().toLowerCase();
+  const resultContainer = document.getElementById('alertResults');
+
+  const filtered = reportedCrimes.filter(report => report.location === locationInput);
+
+  if (filtered.length === 0) {
+    resultContainer.innerHTML = `<p>No crime alerts for this location.</p>`;
+  } else {
+    const list = filtered.map(report =>
+      `<li><strong>${report.type}</strong>: ${report.description}</li>`
+    ).join('');
+    resultContainer.innerHTML = `<ul>${list}</ul>`;
+  }
+}
+
+</script>
+
+</body>
+</html>
